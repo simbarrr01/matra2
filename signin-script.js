@@ -1,4 +1,4 @@
-// Sign In Page JavaScript - Fixed for cross-device compatibility
+// Sign In Page JavaScript
 
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize all functionality
@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initLoadingAnimation();
 });
 
-// Sign In Form Handler - FIXED for cross-device compatibility
+// Sign In Form Handler
 function initSignInForm() {
     const signinForm = document.getElementById('signinForm');
     const signinBtn = document.querySelector('.signin-btn');
@@ -32,37 +32,20 @@ function initSignInForm() {
         // Show loading state
         showLoadingState();
         
-        // Use a shorter timeout for better mobile experience
+        // Simulate API call delay
         setTimeout(() => {
-            // Case-insensitive email comparison
-            if (username.toLowerCase() === validCredentials.username.toLowerCase() && password === validCredentials.password) {
+            if (username === validCredentials.username && password === validCredentials.password) {
                 showSuccessMessage('Login successful! Redirecting...');
                 
+                // Redirect to dashboard or main page after success
                 setTimeout(() => {
-                    // FIXED: Better localStorage handling with try-catch
-                    try {
-                        localStorage.setItem('userLoggedIn', 'true');
-                        // Also store user data for session management
-                        localStorage.setItem('userEmail', username.toLowerCase());
-                    } catch (err) {
-                        console.error('LocalStorage error:', err);
-                        // Fallback to sessionStorage if localStorage is blocked
-                        try {
-                            sessionStorage.setItem('userLoggedIn', 'true');
-                            sessionStorage.setItem('userEmail', username.toLowerCase());
-                        } catch (err2) {
-                            console.error('SessionStorage also blocked');
-                        }
-                    }
-                    
-                    // FIXED: More reliable redirect
-                    window.location.href = 'dashboard.html';
-                }, 1500);
+                    window.location.href = 'index.html';
+                }, 2000);
             } else {
                 showErrorMessage('Invalid username or password. Please try again.');
                 hideLoadingState();
             }
-        }, 1000); // Reduced timeout for better mobile UX
+        }, 1500);
     });
     
     function showLoadingState() {
@@ -78,12 +61,12 @@ function initSignInForm() {
     }
 }
 
-// Form Validation - FIXED for mobile compatibility
+// Form Validation
 function initFormValidation() {
     const usernameInput = document.getElementById('username');
     const passwordInput = document.getElementById('password');
     
-    // Real-time validation with better mobile support
+    // Real-time validation
     usernameInput.addEventListener('input', function() {
         validateEmail(this);
     });
@@ -91,15 +74,6 @@ function initFormValidation() {
     passwordInput.addEventListener('input', function() {
         validatePassword(this);
     });
-    
-    // Add touch event listeners for mobile
-    usernameInput.addEventListener('touchstart', function() {
-        this.focus({preventScroll: true});
-    }, {passive: true});
-    
-    passwordInput.addEventListener('touchstart', function() {
-        this.focus({preventScroll: true});
-    }, {passive: true});
     
     function validateEmail(input) {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -135,28 +109,23 @@ function initFormValidation() {
     }
 }
 
-// Password Toggle - FIXED for touch devices
+// Password Toggle
 function initPasswordToggle() {
     const toggleBtn = document.querySelector('.toggle-password');
     const passwordInput = document.getElementById('password');
     
     if (toggleBtn) {
-        // Use both click and touch events for better mobile support
-        toggleBtn.addEventListener('click', handlePasswordToggle);
-        toggleBtn.addEventListener('touchend', handlePasswordToggle);
-        
-        function handlePasswordToggle(e) {
-            e.preventDefault();
+        toggleBtn.addEventListener('click', function() {
             const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
             passwordInput.setAttribute('type', type);
             
             // Toggle eye icon
             this.textContent = type === 'password' ? '👁' : '🙈';
-        }
+        });
     }
 }
 
-// Global password toggle function (for onclick attribute) - FIXED
+// Global password toggle function (for onclick attribute)
 function togglePassword() {
     const passwordInput = document.getElementById('password');
     const toggleBtn = document.querySelector('.toggle-password');
@@ -169,56 +138,57 @@ function togglePassword() {
     }
 }
 
-// Floating Animations - FIXED for performance
+// Floating Animations
 function initFloatingAnimations() {
     const floatingIcons = document.querySelectorAll('.crypto-icon');
     
     floatingIcons.forEach((icon, index) => {
-        // Use CSS animations instead of JS for better performance
-        icon.style.animation = `float 6s ease-in-out ${index * 0.5}s infinite`;
+        // Add random movement
+        setInterval(() => {
+            const randomX = (Math.random() - 0.5) * 30;
+            const randomY = (Math.random() - 0.5) * 30;
+            
+            icon.style.transform = `translate(${randomX}px, ${randomY}px) rotate(${Math.random() * 10 - 5}deg)`;
+        }, 4000 + index * 600);
         
-        // Add hover effects with touch device support
-        icon.addEventListener('mouseenter', handleIconHover);
-        icon.addEventListener('mouseleave', handleIconLeave);
-        
-        // Add touch events for mobile
-        icon.addEventListener('touchstart', handleIconHover, {passive: true});
-        icon.addEventListener('touchend', handleIconLeave, {passive: true});
-        
-        function handleIconHover() {
+        // Add hover effects
+        icon.addEventListener('mouseenter', function() {
             this.style.transform = 'scale(1.2) rotate(10deg)';
             this.style.zIndex = '10';
             this.style.background = 'rgba(0, 255, 136, 0.3)';
             this.style.borderColor = '#00ff88';
-        }
+        });
         
-        function handleIconLeave() {
+        icon.addEventListener('mouseleave', function() {
             this.style.transform = 'scale(1) rotate(0deg)';
             this.style.zIndex = '1';
             this.style.background = 'rgba(255, 255, 255, 0.1)';
             this.style.borderColor = 'rgba(255, 255, 255, 0.1)';
-        }
+        });
+        
+        // Add click effects
+        icon.addEventListener('click', function() {
+            this.style.animation = 'none';
+            this.style.transform = 'scale(1.5) rotate(360deg)';
+            
+            setTimeout(() => {
+                this.style.animation = 'float 6s ease-in-out infinite';
+                this.style.transform = 'scale(1) rotate(0deg)';
+            }, 1000);
+        });
     });
 }
 
-// Ripple Effect - FIXED for touch devices
+// Ripple Effect
 function initRippleEffect() {
     const signinBtn = document.querySelector('.signin-btn');
     
-    // Add both click and touch events
-    signinBtn.addEventListener('click', createRipple);
-    signinBtn.addEventListener('touchend', createRipple);
-    
-    function createRipple(e) {
-        // Handle both mouse and touch events
-        const clientX = e.clientX || (e.touches && e.touches[0].clientX) || 0;
-        const clientY = e.clientY || (e.touches && e.touches[0].clientY) || 0;
-        
+    signinBtn.addEventListener('click', function(e) {
         const ripple = document.createElement('span');
         const rect = this.getBoundingClientRect();
         const size = Math.max(rect.width, rect.height);
-        const x = clientX - rect.left - size / 2;
-        const y = clientY - rect.top - size / 2;
+        const x = e.clientX - rect.left - size / 2;
+        const y = e.clientY - rect.top - size / 2;
         
         ripple.style.width = ripple.style.height = size + 'px';
         ripple.style.left = x + 'px';
@@ -230,10 +200,10 @@ function initRippleEffect() {
         setTimeout(() => {
             ripple.remove();
         }, 600);
-    }
+    });
 }
 
-// Loading Animation - FIXED for better mobile performance
+// Loading Animation
 function initLoadingAnimation() {
     // Add entrance animation to form elements
     const formElements = document.querySelectorAll('.form-group, .signin-btn, .form-options');
@@ -250,14 +220,14 @@ function initLoadingAnimation() {
     });
 }
 
-// Message Display Functions - FIXED for better visibility
+// Message Display Functions
 function showErrorMessage(message) {
     hideMessages();
     
     const errorDiv = document.createElement('div');
     errorDiv.className = 'error-message';
     errorDiv.textContent = message;
-    errorDiv.style.cssText = 'display: block; color: #ff6b6b; background: rgba(255, 107, 107, 0.1); padding: 12px; border-radius: 8px; margin-bottom: 20px; border: 1px solid rgba(255, 107, 107, 0.3);';
+    errorDiv.style.display = 'block';
     
     const form = document.getElementById('signinForm');
     form.insertBefore(errorDiv, form.firstChild);
@@ -266,9 +236,7 @@ function showErrorMessage(message) {
     setTimeout(() => {
         errorDiv.style.opacity = '0';
         setTimeout(() => {
-            if (errorDiv.parentNode) {
-                errorDiv.remove();
-            }
+            errorDiv.remove();
         }, 300);
     }, 5000);
 }
@@ -279,7 +247,7 @@ function showSuccessMessage(message) {
     const successDiv = document.createElement('div');
     successDiv.className = 'success-message';
     successDiv.textContent = message;
-    successDiv.style.cssText = 'display: block; color: #00ff88; background: rgba(0, 255, 136, 0.1); padding: 12px; border-radius: 8px; margin-bottom: 20px; border: 1px solid rgba(0, 255, 136, 0.3);';
+    successDiv.style.display = 'block';
     
     const form = document.getElementById('signinForm');
     form.insertBefore(successDiv, form.firstChild);
@@ -287,14 +255,10 @@ function showSuccessMessage(message) {
 
 function hideMessages() {
     const existingMessages = document.querySelectorAll('.error-message, .success-message');
-    existingMessages.forEach(msg => {
-        if (msg.parentNode) {
-            msg.remove();
-        }
-    });
+    existingMessages.forEach(msg => msg.remove());
 }
 
-// Keyboard Navigation - FIXED for mobile virtual keyboards
+// Keyboard Navigation
 document.addEventListener('keydown', function(e) {
     // Enter key on form
     if (e.key === 'Enter' && e.target.tagName !== 'BUTTON') {
@@ -335,16 +299,42 @@ function autoFillDemo() {
     document.getElementById('password').dispatchEvent(new Event('input'));
 }
 
-// Initialize demo button (for testing)
+// Add demo button (for testing - remove in production)
 function addDemoButton() {
     const demoBtn = document.createElement('button');
     demoBtn.textContent = 'Auto-fill Demo';
-    demoBtn.style.cssText = 'position: fixed; bottom: 20px; right: 20px; padding: 10px 15px; background: rgba(0, 255, 136, 0.2); color: white; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px; cursor: pointer; z-index: 1000;';
+    demoBtn.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: rgba(0, 255, 136, 0.2);
+        border: 1px solid #00ff88;
+        color: #00ff88;
+        padding: 8px 16px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 12px;
+        z-index: 1000;
+        transition: all 0.3s ease;
+    `;
+    
     demoBtn.addEventListener('click', autoFillDemo);
+    demoBtn.addEventListener('mouseenter', function() {
+        this.style.background = '#00ff88';
+        this.style.color = '#000000';
+    });
+    demoBtn.addEventListener('mouseleave', function() {
+        this.style.background = 'rgba(0, 255, 136, 0.2)';
+        this.style.color = '#00ff88';
+    });
+    
     document.body.appendChild(demoBtn);
 }
 
-// Parallax Effect - FIXED for mobile performance
+// Initialize demo button (for testing)
+addDemoButton();
+
+// Parallax Effect
 window.addEventListener('scroll', function() {
     const scrolled = window.pageYOffset;
     const floatingIcons = document.querySelectorAll('.crypto-icon');
@@ -352,50 +342,38 @@ window.addEventListener('scroll', function() {
     floatingIcons.forEach((icon, index) => {
         const speed = 0.2 + (index * 0.05);
         const yPos = -(scrolled * speed);
-        icon.style.transform = `translateY(${yPos}px) ${icon.style.transform}`;
+        icon.style.transform += ` translateY(${yPos}px)`;
     });
 });
 
-// Form Auto-save (localStorage) - FIXED with better error handling
+// Form Auto-save (localStorage)
 function initAutoSave() {
     const usernameInput = document.getElementById('username');
     const rememberCheckbox = document.getElementById('remember');
     
-    // Load saved data with error handling
-    try {
-        const savedUsername = localStorage.getItem('savedUsername');
-        const rememberMe = localStorage.getItem('rememberMe') === 'true';
-        
-        if (savedUsername && rememberMe) {
-            usernameInput.value = savedUsername;
-            rememberCheckbox.checked = true;
-        }
-    } catch (err) {
-        console.error('Failed to load saved data:', err);
+    // Load saved data
+    const savedUsername = localStorage.getItem('savedUsername');
+    const rememberMe = localStorage.getItem('rememberMe') === 'true';
+    
+    if (savedUsername && rememberMe) {
+        usernameInput.value = savedUsername;
+        rememberCheckbox.checked = true;
     }
     
-    // Save on change with error handling
+    // Save on change
     usernameInput.addEventListener('input', function() {
-        try {
-            if (rememberCheckbox.checked) {
-                localStorage.setItem('savedUsername', this.value);
-            }
-        } catch (err) {
-            console.error('Failed to save username:', err);
+        if (rememberCheckbox.checked) {
+            localStorage.setItem('savedUsername', this.value);
         }
     });
     
     rememberCheckbox.addEventListener('change', function() {
-        try {
-            if (this.checked) {
-                localStorage.setItem('savedUsername', usernameInput.value);
-                localStorage.setItem('rememberMe', 'true');
-            } else {
-                localStorage.removeItem('savedUsername');
-                localStorage.removeItem('rememberMe');
-            }
-        } catch (err) {
-            console.error('Failed to update remember me setting:', err);
+        if (this.checked) {
+            localStorage.setItem('savedUsername', usernameInput.value);
+            localStorage.setItem('rememberMe', 'true');
+        } else {
+            localStorage.removeItem('savedUsername');
+            localStorage.removeItem('rememberMe');
         }
     });
 }
@@ -411,31 +389,6 @@ document.addEventListener('DOMContentLoaded', function() {
         element.style.transition = 'all 0.3s ease';
     });
 });
-
-// Enhanced localStorage check function
-function checkLocalStorage() {
-    try {
-        const test = 'test';
-        localStorage.setItem(test, test);
-        localStorage.removeItem(test);
-        return true;
-    } catch (e) {
-        return false;
-    }
-}
-
-// Session management for cross-device compatibility
-function initSessionManagement() {
-    if (!checkLocalStorage()) {
-        console.warn('LocalStorage is not available, using sessionStorage');
-        window.useSessionStorage = true;
-    } else {
-        window.useSessionStorage = false;
-    }
-}
-
-// Initialize session management
-initSessionManagement();
 
 // Console welcome message
 console.log('🔐 Sign In page loaded successfully!');
