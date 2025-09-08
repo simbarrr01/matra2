@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Withdraw - MATRA of Queensland</title>
+    <link rel="stylesheet" href="withdraw-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <header class="top-nav">
+        <div class="nav-container">
+            <div class="nav-left">
+                <div class="logo" onclick="window.location.href='dashboard.html'">
+                    <div class="logo-icon">👑</div>
+                    <span>MATRA</span>
+                </div>
+                <nav class="main-nav">
+                    <a href="#" class="nav-link">Buy Crypto</a>
+                    <a href="#" class="nav-link">Markets</a>
+                    <a href="#" class="nav-link">Trade <i class="fas fa-chevron-down"></i></a>
+                    <a href="#" class="nav-link">Futures <i class="fas fa-chevron-down"></i></a>
+                    <a href="#" class="nav-link">Earn <i class="fas fa-chevron-down"></i></a>
+                    <a href="#" class="nav-link">More <i class="fas fa-chevron-down"></i></a>
+                </nav>
+            </div>
+            <div class="nav-right">
+                
+                </button>
+               
+                <button class="logout-btn" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Logout
+                </button>
+            </div>
+        </div>
+    </header>
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="content-layout">
+                <!-- Main Withdrawal Form -->
+                <div class="withdrawal-form-section">
+                    <h1>Withdraw Crypto</h1>
+                    
+                    <!-- Withdrawal Steps -->
+                    <div class="withdrawal-steps">
+                        <div class="step active" data-step="1">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h3>Select coin</h3>
+                                <div class="coin-selector">
+                                    <div class="selected-coin" id="selectedCoin">
+                                        <div class="coin-logo bitcoin">₿</div>
+                                        <div class="coin-info">
+                                            <span class="coin-symbol">BTC</span>
+                                            <span class="coin-name">Bitcoin</span>
+                                        </div>
+                                        <i class="fas fa-chevron-down"></i>
+                                    </div>
+                                    <div class="coin-dropdown" id="coinDropdown">
+                                        <div class="coin-option" data-coin="BTC">
+                                            <div class="coin-logo bitcoin">₿</div>
+                                            <div class="coin-info">
+                                                <span class="coin-symbol">BTC</span>
+                                                <span class="coin-name">Bitcoin</span>
+                                            </div>
+                                        </div>
+                                        <div class="coin-option" data-coin="USDT">
+                                            <div class="coin-logo usdt">T</div>
+                                            <div class="coin-info">
+                                                <span class="coin-symbol">USDT</span>
+                                                <span class="coin-name">Tether</span>
+                                            </div>
+                                        </div>
+                                        <div class="coin-option" data-coin="USDC">
+                                            <div class="coin-logo usdc">$</div>
+                                            <div class="coin-info">
+                                                <span class="coin-symbol">USDC</span>
+                                                <span class="coin-name">USD Coin</span>
+                                            </div>
+                                        </div>
+                                        <div class="coin-option" data-coin="LTC">
+                                            <div class="coin-logo litecoin">Ł</div>
+                                            <div class="coin-info">
+                                                <span class="coin-symbol">LTC</span>
+                                                <span class="coin-name">Litecoin</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="step" data-step="2">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h3>Withdraw to</h3>
+                                <div class="withdraw-tabs">
+                                    <button class="tab-btn active" data-tab="address">Address</button>
+                                    <button class="tab-btn" data-tab="user">MATRA user</button>
+                                </div>
+                                <div class="withdraw-form">
+                                    <div class="form-group">
+                                        <label>Enter Address</label>
+                                        <div class="input-group">
+                                            <input type="text" id="withdrawAddress" placeholder="Enter wallet address">
+                                            <button class="input-icon"><i class="fas fa-address-book"></i></button>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Select network</label>
+                                        <select id="networkSelect">
+                                            <option value="BTC">Bitcoin Network</option>
+                                            <option value="BSC">Binance Smart Chain</option>
+                                            <option value="ETH">Ethereum</option>
+                                            <option value="LTC">Litecoin Network</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="step" data-step="3">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h3>Withdraw amount</h3>
+                                <div class="amount-form">
+                                    <div class="form-group">
+                                        <label>Amount</label>
+                                        <div class="input-group">
+                                            <input type="number" id="withdrawAmount" placeholder="0.00" step="0.00000001">
+                                            <button class="max-btn">MAX</button>
+                                        </div>
+                                        <div class="balance-info">
+                                            <span>Available: <span id="availableBalance">3.00000000 BTC</span></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Fee</label>
+                                        <div class="fee-info">
+                                            <span id="withdrawFee">0.00050000 BTC</span>
+                                            <span class="fee-note">Network fee</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>You will receive</label>
+                                        <div class="receive-amount">
+                                            <span id="receiveAmount">0.00000000 BTC</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="step" data-step="4">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h3>Confirm withdrawal</h3>
+                                <div class="confirmation-details">
+                                    <div class="detail-row">
+                                        <span class="label">Coin:</span>
+                                        <span class="value" id="confirmCoin">BTC</span>
+                                    </div>
+                                    <div class="detail-row">
+                                        <span class="label">Amount:</span>
+                                        <span class="value" id="confirmAmount">0.00000000 BTC</span>
+                                    </div>
+                                    <div class="detail-row">
+                                        <span class="label">Network:</span>
+                                        <span class="value" id="confirmNetwork">Bitcoin Network</span>
+                                    </div>
+                                    <div class="detail-row">
+                                        <span class="label">Address:</span>
+                                        <span class="value" id="confirmAddress">-</span>
+                                    </div>
+                                    <div class="detail-row">
+                                        <span class="label">Fee:</span>
+                                        <span class="value" id="confirmFee">0.00050000 BTC</span>
+                                    </div>
+                                </div>
+                                <div class="security-check">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" id="securityCheck">
+                                        <span class="checkmark"></span>
+                                        I confirm that the withdrawal address is correct
+                                    </label>
+                                </div>
+                                <button class="withdraw-btn" id="withdrawBtn" disabled>
+                                    <i class="fas fa-arrow-up"></i>
+                                    Withdraw
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Section -->
+                <div class="faq-section">
+                    <div class="faq-header">
+                        <h3>FAQ</h3>
+                        <a href="#" class="more-link">More <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                    <div class="faq-list">
+                        <a href="#" class="faq-item">
+                            <i class="fas fa-play-circle"></i>
+                            How to withdraw crypto? (Video)
+                        </a>
+                        <a href="#" class="faq-item">
+                            <i class="fas fa-search"></i>
+                            How to Find My Transaction ID (TxID)?
+                        </a>
+                        <a href="#" class="faq-item">
+                            <i class="fas fa-key"></i>
+                            How to Recover My BEP-20 Tokens?
+                        </a>
+                        <a href="#" class="faq-item">
+                            <i class="fas fa-info-circle"></i>
+                            Deposit & Withdrawal Status query
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Withdrawals Section -->
+            <div class="recent-withdrawals">
+                <div class="withdrawals-header">
+                    <h2>Recent Withdrawals</h2>
+                    <div class="withdrawals-controls">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="hideErrors">
+                            <span class="checkmark"></span>
+                            Hide error notices
+                        </label>
+                        <a href="#" class="more-link">More <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="withdrawals-tabs">
+                    <button class="tab-btn active" data-tab="address">Address</button>
+                    <button class="tab-btn" data-tab="user">MATRA user</button>
+                </div>
+
+                <div class="withdrawals-table">
+                    <div class="table-header">
+                        <div class="col-asset">Asset/Date</div>
+                        <div class="col-amount">Amount</div>
+                        <div class="col-network">Network</div>
+                        <div class="col-address">Address</div>
+                        <div class="col-txid">TxID</div>
+                        <div class="col-status">Status</div>
+                    </div>
+                    <div class="table-body" id="withdrawalsTableBody">
+                        <!-- Recent withdrawals will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-left">
+                    <div class="footer-logo">
+                        <div class="logo-icon">👑</div>
+                        <span>MATRA of Queensland.</span>
+                    </div>
+                    <p class="acknowledgment">
+                        MATRA acknowledges the Traditional Custodians of Country throughout Australia. 
+                        We pay our respects to Aboriginal and Torres Strait Islander cultures and to Elders past, present and emerging.
+                    </p>
+                    <div class="bsb">BSB: 313 215</div>
+                </div>
+                <div class="footer-links">
+                    <div class="link-column">
+                        <h4>Company</h4>
+                        <a href="#">About us</a>
+                        <a href="#">Careers</a>
+                        <a href="#">Press</a>
+                        <a href="#">News</a>
+                        <a href="#">Contact</a>
+                    </div>
+                    <div class="link-column">
+                        <h4>Legal</h4>
+                        <a href="#">Terms</a>
+                        <a href="#">Privacy</a>
+                        <a href="#">Cookies</a>
+                        <a href="#">Licenses</a>
+                        <a href="#">Releases</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Copyright: © 2023 MATRA 2018-2023 | ABN 25 187 601 607 | AFSL/Australian Credit License Number 154431 All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="withdraw-script.js"></script>
+</body>
+</html>

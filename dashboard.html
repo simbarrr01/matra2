@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - MATRA of Queensland</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+       <!-- Top Navigation Bar -->
+    <header class="top-nav">
+        <div class="nav-container">
+            <div class="nav-left">
+                <div class="logo" onclick="window.location.href='dashboard.html'">
+                    <div class="logo-icon">👑</div>
+                    <span>MATRA</span>
+                </div>
+                <nav class="main-nav">
+                    <a href="#" class="nav-link">Buy Crypto</a>
+                    <a href="#" class="nav-link">Markets</a>
+                    <a href="#" class="nav-link">Trade <i class="fas fa-chevron-down"></i></a>
+                    <a href="#" class="nav-link">Futures <i class="fas fa-chevron-down"></i></a>
+                    <a href="#" class="nav-link">Earn <i class="fas fa-chevron-down"></i></a>
+                    <a href="#" class="nav-link">More <i class="fas fa-chevron-down"></i></a>
+                </nav>
+            </div>
+            <div class="nav-right">
+                
+                </button>
+               
+                <button class="logout-btn" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Logout
+                </button>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- User Information Panel -->
+            <div class="user-panel">
+                <div class="user-profile">
+                    <div class="profile-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="user-info">
+                        <h3>User-3e9fc</h3>
+                        <div class="user-badges">
+                           
+                        </div>
+                    </div>
+                </div>
+                <div class="user-details">
+                    <div class="detail-item">
+                        <span class="label">UID:</span>
+                        <span class="value">571561862</span>
+                        <button class="copy-btn"><i class="fas fa-copy"></i></button>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">VIP Level:</span>
+                        <span class="value">Gold User <i class="fas fa-chevron-right"></i></span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Following:</span>
+                        <span class="value">0</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Followers:</span>
+                        <span class="value">0 <i class="fas fa-chevron-right"></i></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Estimated Balance Section -->
+            <div class="balance-section">
+                <div class="balance-header">
+                    <h2>Estimated Balance</h2>
+                    <button class="eye-btn"><i class="fas fa-eye"></i></button>
+                </div>
+                <div class="balance-content">
+                    <div class="balance-main">
+                        <div class="balance-amount">
+                            <span class="amount" id="totalBalance">0.00000000 BTC</span>
+                            <button class="currency-selector">
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                        </div>
+                        <div class="balance-fiat" id="totalFiat">≈ $0.00</div>
+                        <div class="pnl">
+                            <span class="pnl-label">Today's PnL:</span>
+                            <span class="pnl-value" id="todayPnl">+ $0.00 (0.00%)</span>
+                        </div>
+                    </div>
+                    <div class="balance-actions">
+                         <button class="action-btn" onclick="window.location.href='deposit.html'">Deposit</button>
+                       <button class="action-btn" onclick="window.location.href='withdraw.html'">Withdraw</button>
+                        
+                    </div>
+                    <div class="balance-chart">
+                        <canvas id="balanceChart" width="200" height="60"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- My Assets Section -->
+            <div class="assets-section">
+                <div class="assets-header">
+                    <h2>My Assets</h2>
+                    <a href="#" class="more-link">More <i class="fas fa-chevron-right"></i></a>
+                </div>
+                <div class="assets-tabs">
+                    <button class="tab-btn active">Holding</button>
+                    <button class="tab-btn">Hot</button>
+                    <button class="tab-btn">New Listing</button>
+                    <button class="tab-btn">Favorite</button>
+                    <button class="tab-btn">Top Gainers</button>
+                    <button class="tab-btn">24h Volume</button>
+                </div>
+                <div class="assets-table">
+                    <div class="table-header">
+                        <div class="col-coin">Coin</div>
+                        <div class="col-amount">Amount</div>
+                        <div class="col-price">Price</div>
+                        <div class="col-value">Value</div>
+                        <div class="col-change">24H Change</div>
+                        <div class="col-action">Action</div>
+                    </div>
+                    <div class="table-body" id="assetsTableBody">
+                        <!-- Assets will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-left">
+                    <div class="footer-logo">
+                        <div class="logo-icon">👑</div>
+                        <span>MATRA of Queensland.</span>
+                    </div>
+                    <p class="acknowledgment">
+                        MATRA acknowledges the Traditional Custodians of Country throughout Australia. 
+                        We pay our respects to Aboriginal and Torres Strait Islander cultures and to Elders past, present and emerging.
+                    </p>
+                    <div class="bsb">BSB: 313 215</div>
+                </div>
+                <div class="footer-links">
+                    <div class="link-column">
+                        <h4>Company</h4>
+                        <a href="#">About us</a>
+                        <a href="#">Careers</a>
+                        <a href="#">Press</a>
+                        <a href="#">News</a>
+                        <a href="#">Contact</a>
+                    </div>
+                    <div class="link-column">
+                        <h4>Legal</h4>
+                        <a href="#">Terms</a>
+                        <a href="#">Privacy</a>
+                        <a href="#">Cookies</a>
+                        <a href="#">Licenses</a>
+                        <a href="#">Releases</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Copyright: © 2023 MATRA 2018-2023 | ABN 25 187 601 607 | AFSL/Australian Credit License Number 154431 All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>

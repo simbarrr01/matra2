@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Payment - MATRA of Queensland</title>
+    <link rel="stylesheet" href="payment-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <header class="top-nav">
+        <div class="nav-container">
+            <div class="nav-left">
+                <div class="logo" onclick="window.location.href='dashboard.html'">
+                    <div class="logo-icon">👑</div>
+                    <span>MATRA</span>
+                </div>
+                <nav class="main-nav">
+                    <a href="#" class="nav-link">Buy Crypto</a>
+                    <a href="#" class="nav-link">Markets</a>
+                    <a href="#" class="nav-link">Trade <i class="fas fa-chevron-down"></i></a>
+                    <a href="#" class="nav-link">Futures <i class="fas fa-chevron-down"></i></a>
+                    <a href="#" class="nav-link">Earn <i class="fas fa-chevron-down"></i></a>
+                    <a href="#" class="nav-link">More <i class="fas fa-chevron-down"></i></a>
+                </nav>
+            </div>
+            <div class="nav-right">
+                
+                </button>
+               
+                <button class="logout-btn" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Logout
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Page Header -->
+            <div class="page-header">
+                <h1>How to Complete Your Payment</h1>
+            </div>
+
+            <!-- Payment Steps -->
+            <div class="payment-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Send Payment</h3>
+                        <p>Transfer <span id="paymentAmount">$0</span> to the wallet address</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Upload Proof</h3>
+                        <p>Take a screenshot of your transaction</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Submit & Wait</h3>
+                        <p>Submit proof and wait for confirmation</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Payment Section -->
+            <div class="payment-section">
+                <div class="payment-layout">
+                    <!-- QR Code Section -->
+                    <div class="qr-section">
+                        <div class="qr-container">
+                            <div class="qr-code" id="qrCode">
+                                <!-- QR Code will be generated here -->
+                                <div class="qr-placeholder">
+                                    <i class="fas fa-qrcode"></i>
+                                    <p>QR Code</p>
+                                </div>
+                            </div>
+                            <p class="qr-instruction">Scan with your wallet app to send payment instantly</p>
+                        </div>
+                    </div>
+
+                    <!-- Wallet Address Section -->
+                    <div class="wallet-section">
+                        <div class="wallet-container">
+                            <h3>Wallet Address</h3>
+                            <div class="address-input-group">
+                                <input type="text" id="walletAddress" readonly value="TMoMmsrs4oKME7KLrxhd3oP14sPDFsgkk">
+                                <button class="copy-btn" onclick="copyWalletAddress()">
+                                    <i class="fas fa-copy"></i>
+                                    Copy
+                                </button>
+                            </div>
+                            <p class="address-note">Send exact amount to avoid delays</p>
+                        </div>
+                    </div>
+
+                    <!-- Upload Proof Section -->
+                    <div class="upload-section">
+                        <div class="upload-container">
+                            <h3>Upload Payment Proof</h3>
+                            <div class="upload-area" id="uploadArea">
+                                <div class="upload-content">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <p>Choose file or drag & drop</p>
+                                    <span class="file-types">PNG, JPG, GIF up to 10MB</span>
+                                </div>
+                                <input type="file" id="fileInput" accept="image/*" style="display: none;">
+                            </div>
+                            <div class="file-preview" id="filePreview" style="display: none;">
+                                <div class="preview-content">
+                                    <i class="fas fa-file-image"></i>
+                                    <span class="file-name"></span>
+                                    <button class="remove-file" onclick="removeFile()">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="submit-section">
+                    <button class="submit-btn" id="submitBtn" onclick="submitPayment()">
+                        <i class="fas fa-check"></i>
+                        Submit Payment Proof
+                    </button>
+                    <p class="security-note">
+                        <i class="fas fa-shield-alt"></i>
+                        Protected by 256-bit SSL encryption
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="payment-script.js"></script>
+</body>
+</html>

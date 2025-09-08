@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deposit - MATRA of Queensland</title>
+    <link rel="stylesheet" href="deposit-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+   <!-- Top Navigation Bar -->
+    <header class="top-nav">
+        <div class="nav-container">
+            <div class="nav-left">
+                <div class="logo" onclick="window.location.href='dashboard.html'">
+                    <div class="logo-icon">👑</div>
+                    <span>MATRA</span>
+                </div>
+                <nav class="main-nav">
+                    <a href="#" class="nav-link">Buy Crypto</a>
+                    <a href="#" class="nav-link">Markets</a>
+                    <a href="#" class="nav-link">Trade <i class="fas fa-chevron-down"></i></a>
+                    <a href="#" class="nav-link">Futures <i class="fas fa-chevron-down"></i></a>
+                    <a href="#" class="nav-link">Earn <i class="fas fa-chevron-down"></i></a>
+                    <a href="#" class="nav-link">More <i class="fas fa-chevron-down"></i></a>
+                </nav>
+            </div>
+            <div class="nav-right">
+                
+                </button>
+               
+                <button class="logout-btn" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Logout
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Page Header -->
+            <div class="page-header">
+                <h1>Fund Your Account</h1>
+                <p>Secure deposits to start trading</p>
+            </div>
+
+            <!-- Success Notification (Hidden by default) -->
+            <div class="success-notification" id="successNotification" style="display: none;">
+                <div class="notification-content">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Account Fund Successful! Please wait for system to validate this transaction.</span>
+                    <button class="close-notification" onclick="hideNotification()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Main Deposit Section -->
+            <div class="deposit-section">
+                <div class="deposit-layout">
+                    <!-- Left Panel - Deposit Form -->
+                    <div class="deposit-form-panel">
+                        <div class="panel-header">
+                            <h3>Make a Deposit</h3>
+                            <div class="security-badge">
+                                <i class="fas fa-lock"></i>
+                                <span>Secure</span>
+                            </div>
+                        </div>
+
+                        <!-- Quick Amount Buttons -->
+                        <div class="quick-amounts">
+                            <button class="amount-btn" data-amount="100">$100</button>
+                            <button class="amount-btn" data-amount="500">$500</button>
+                            <button class="amount-btn" data-amount="1000">$1,000</button>
+                            <button class="amount-btn" data-amount="5000">$5,000</button>
+                        </div>
+
+                        <!-- Deposit Form -->
+                        <form class="deposit-form" id="depositForm">
+                            <div class="form-group">
+                                <label for="paymentMethod">Payment Method *</label>
+                                <div class="payment-method-selector">
+                                    <button type="button" class="method-selector" id="methodSelector">
+                                        <div class="selected-method">
+                                            <div class="coin-logo" id="selectedCoinLogo">₿</div>
+                                            <div class="coin-info">
+                                                <span class="coin-symbol" id="selectedCoinSymbol">Bitcoin</span>
+                                                <span class="coin-name" id="selectedCoinName">BTC</span>
+                                            </div>
+                                            <i class="fas fa-chevron-down"></i>
+                                        </div>
+                                    </button>
+                                    <div class="method-dropdown" id="methodDropdown">
+                                        <div class="method-option" data-coin="BTC">
+                                            <div class="coin-logo btc">₿</div>
+                                            <div class="coin-info">
+                                                <span class="coin-symbol">Bitcoin</span>
+                                                <span class="coin-name">BTC</span>
+                                            </div>
+                                        </div>
+                                        <div class="method-option" data-coin="USDT">
+                                            <div class="coin-logo usdt">T</div>
+                                            <div class="coin-info">
+                                                <span class="coin-symbol">Tether</span>
+                                                <span class="coin-name">USDT</span>
+                                            </div>
+                                        </div>
+                                        <div class="method-option" data-coin="USDC">
+                                            <div class="coin-logo usdc">$</div>
+                                            <div class="coin-info">
+                                                <span class="coin-symbol">USD Coin</span>
+                                                <span class="coin-name">USDC</span>
+                                            </div>
+                                        </div>
+                                        <div class="method-option" data-coin="LTC">
+                                            <div class="coin-logo ltc">Ł</div>
+                                            <div class="coin-info">
+                                                <span class="coin-symbol">Litecoin</span>
+                                                <span class="coin-name">LTC</span>
+                                            </div>
+                                        </div>
+                                        <div class="method-option" data-coin="ETH">
+                                            <div class="coin-logo eth">Ξ</div>
+                                            <div class="coin-info">
+                                                <span class="coin-symbol">Ethereum</span>
+                                                <span class="coin-name">ETH</span>
+                                            </div>
+                                        </div>
+                                        <div class="method-option" data-coin="BUSD">
+                                            <div class="coin-logo busd">B</div>
+                                            <div class="coin-info">
+                                                <span class="coin-symbol">Binance USD</span>
+                                                <span class="coin-name">BUSD</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="depositAmount">Amount to Deposit *</label>
+                                <div class="amount-input-group">
+                                    <span class="currency-symbol">$</span>
+                                    <input type="number" id="depositAmount" placeholder="Enter the amount you wish to deposit" min="0" step="0.01">
+                                </div>
+                            </div>
+
+                            <button type="submit" class="deposit-submit-btn" id="depositSubmitBtn">
+                                <i class="fas fa-arrow-right"></i>
+                                Proceed with Deposit
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Right Panel - Payment Methods -->
+                    <div class="payment-methods-panel">
+                        <div class="panel-header">
+                            <h3>Payment Methods</h3>
+                        </div>
+                        <div class="payment-methods-list">
+                            <div class="payment-method-item">
+                                <div class="method-icon">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <span>Bitcoin</span>
+                            </div>
+                            <div class="payment-method-item">
+                                <div class="method-icon">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <span>USDT</span>
+                            </div>
+                            <div class="payment-method-item">
+                                <div class="method-icon">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <span>USDC</span>
+                            </div>
+                            <div class="payment-method-item">
+                                <div class="method-icon">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <span>Litecoin</span>
+                            </div>
+                            <div class="payment-method-item">
+                                <div class="method-icon">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <span>Ethereum</span>
+                            </div>
+                            <div class="payment-method-item">
+                                <div class="method-icon">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <span>BUSD</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="deposit-script.js"></script>
+</body>
+</html>

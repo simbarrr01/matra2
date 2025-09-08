@@ -1,0 +1,613 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(180deg, #1a2e1a 0%, #0d0d0d 100%);
+    color: #ffffff;
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header Styles */
+.header {
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(10px);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 15px 0;
+}
+
+.header .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.logo:hover {
+    color: #00ff88;
+}
+
+.logo-icon {
+    font-size: 24px;
+}
+
+/* Main Sign In Section */
+.signin-main {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 100px 0 50px;
+}
+
+/* Floating Crypto Icons */
+.floating-crypto-icons {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.crypto-icon {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: bold;
+    animation: float 6s ease-in-out infinite;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.crypto-icon.bitcoin {
+    top: 15%;
+    left: 10%;
+    color: #f7931a;
+    animation-delay: 0s;
+}
+
+.crypto-icon.xrp {
+    top: 25%;
+    right: 15%;
+    color: #23292f;
+    animation-delay: 1s;
+}
+
+.crypto-icon.dogecoin {
+    top: 10%;
+    right: 25%;
+    color: #c2a633;
+    animation-delay: 2s;
+}
+
+.crypto-icon.polkadot {
+    bottom: 25%;
+    right: 20%;
+    color: #e6007a;
+    animation-delay: 3s;
+}
+
+.crypto-icon.binance {
+    bottom: 15%;
+    left: 15%;
+    color: #f3ba2f;
+    animation-delay: 4s;
+}
+
+.crypto-icon.ethereum {
+    top: 60%;
+    left: 5%;
+    color: #627eea;
+    animation-delay: 5s;
+}
+
+.crypto-icon.litecoin {
+    top: 70%;
+    right: 10%;
+    color: #bfbbbb;
+    animation-delay: 6s;
+}
+
+.crypto-icon.cardano {
+    bottom: 40%;
+    left: 30%;
+    color: #0033ad;
+    animation-delay: 7s;
+}
+
+@keyframes float {
+    0%, 100% { 
+        transform: translateY(0px) rotate(0deg); 
+    }
+    25% { 
+        transform: translateY(-15px) rotate(2deg); 
+    }
+    50% { 
+        transform: translateY(-25px) rotate(0deg); 
+    }
+    75% { 
+        transform: translateY(-15px) rotate(-2deg); 
+    }
+}
+
+/* Sign In Container */
+.signin-container {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto;
+}
+
+.signin-box {
+    background: rgba(26, 26, 26, 0.9);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    padding: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.signin-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #00ff88, #00cc6a, #00ff88);
+    background-size: 200% 100%;
+    animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+.signin-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.signin-header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    background: linear-gradient(135deg, #ffffff 0%, #00ff88 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.signin-header p {
+    color: #cccccc;
+    font-size: 16px;
+}
+
+/* Form Styles */
+.signin-form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.form-group {
+    position: relative;
+}
+
+.form-group label {
+    display: block;
+    color: #ffffff;
+    font-weight: 500;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 15px 50px 15px 15px;
+    background: rgba(13, 13, 13, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    color: #ffffff;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #00ff88;
+    box-shadow: 0 0 0 3px rgba(0, 255, 136, 0.1);
+    background: rgba(13, 13, 13, 0.9);
+}
+
+.form-group input::placeholder {
+    color: #888888;
+}
+
+.input-icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888888;
+    font-size: 18px;
+    pointer-events: none;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #888888;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 5px;
+    transition: color 0.3s ease;
+}
+
+.toggle-password:hover {
+    color: #00ff88;
+}
+
+/* Form Options */
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #cccccc;
+}
+
+.remember-me input[type="checkbox"] {
+    display: none;
+}
+
+.checkmark {
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.remember-me input[type="checkbox"]:checked + .checkmark {
+    background: #00ff88;
+    border-color: #00ff88;
+}
+
+.remember-me input[type="checkbox"]:checked + .checkmark::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #000000;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.forgot-password {
+    color: #00ff88;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+.forgot-password:hover {
+    color: #00cc6a;
+}
+
+/* Sign In Button */
+.signin-btn {
+    background: linear-gradient(135deg, #00ff88 0%, #00cc6a 100%);
+    color: #000000;
+    border: none;
+    padding: 15px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.signin-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 255, 136, 0.3);
+}
+
+.signin-btn:active {
+    transform: translateY(0);
+}
+
+.signin-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.btn-loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(0, 0, 0, 0.3);
+    border-top: 2px solid #000000;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Sign In Footer */
+.signin-footer {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.signin-footer p {
+    color: #888888;
+    font-size: 14px;
+}
+
+.signup-link {
+    color: #00ff88;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.signup-link:hover {
+    color: #00cc6a;
+}
+
+/* Footer */
+.footer {
+    background: #0d0d0d;
+    padding: 40px 0 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: auto;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 30px;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.acknowledgment {
+    color: #888888;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.bsb {
+    color: #cccccc;
+    font-weight: 500;
+}
+
+.link-column h4 {
+    color: #ffffff;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.link-column a {
+    display: block;
+    color: #888888;
+    text-decoration: none;
+    margin-bottom: 8px;
+    transition: color 0.3s ease;
+}
+
+.link-column a:hover {
+    color: #00ff88;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 20px;
+    text-align: center;
+}
+
+.footer-bottom p {
+    color: #888888;
+    font-size: 12px;
+}
+
+/* Error and Success Messages */
+.error-message {
+    background: rgba(255, 68, 68, 0.1);
+    border: 1px solid rgba(255, 68, 68, 0.3);
+    color: #ff4444;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    margin-bottom: 20px;
+    display: none;
+}
+
+.success-message {
+    background: rgba(0, 255, 136, 0.1);
+    border: 1px solid rgba(0, 255, 136, 0.3);
+    color: #00ff88;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    margin-bottom: 20px;
+    display: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .signin-box {
+        padding: 30px 25px;
+        margin: 20px;
+    }
+    
+    .signin-header h1 {
+        font-size: 2rem;
+    }
+    
+    .crypto-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    
+    .form-options {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    .signin-box {
+        padding: 25px 20px;
+    }
+    
+    .signin-header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .crypto-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+}
+
+/* Loading Animation */
+.signin-main {
+    opacity: 0;
+    animation: fadeIn 0.8s ease forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+/* Hover Effects for Crypto Icons */
+.crypto-icon:hover {
+    transform: scale(1.1) rotate(5deg);
+    background: rgba(0, 255, 136, 0.2);
+    border-color: #00ff88;
+    transition: all 0.3s ease;
+}
+
+/* Form Validation Styles */
+.form-group input.error {
+    border-color: #ff4444;
+    box-shadow: 0 0 0 3px rgba(255, 68, 68, 0.1);
+}
+
+.form-group input.success {
+    border-color: #00ff88;
+    box-shadow: 0 0 0 3px rgba(0, 255, 136, 0.1);
+}
+
+/* Ripple Effect */
+.signin-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(0);
+    animation: ripple-animation 0.6s linear;
+    pointer-events: none;
+}
+
+@keyframes ripple-animation {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}

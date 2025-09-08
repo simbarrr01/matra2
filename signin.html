@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - MATRA of Queensland</title>
+    <link rel="stylesheet" href="signin-style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo" onclick="window.location.href='index.html'">
+                <div class="logo-icon">👑</div>
+                <span>MATRA </span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Sign In Section -->
+    <main class="signin-main">
+        <div class="container">
+            <!-- Floating Crypto Icons -->
+            <div class="floating-crypto-icons">
+                <div class="crypto-icon bitcoin">₿</div>
+                <div class="crypto-icon xrp">X</div>
+                <div class="crypto-icon dogecoin">Ð</div>
+                <div class="crypto-icon polkadot">P</div>
+                <div class="crypto-icon binance">B</div>
+                <div class="crypto-icon ethereum">Ξ</div>
+                <div class="crypto-icon litecoin">Ł</div>
+                <div class="crypto-icon cardano">●</div>
+            </div>
+
+            <!-- Sign In Form -->
+            <div class="signin-container">
+                <div class="signin-box">
+                    <div class="signin-header">
+                        <h1>Welcome Back</h1>
+                        <p>Sign in to your MATRA account</p>
+                    </div>
+                    
+                    <form class="signin-form" id="signinForm">
+                        <div class="form-group">
+                            <label for="username">Username or Email</label>
+                            <input type="email" id="username" name="username" required placeholder="Enter your email">
+                            
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" name="password" required placeholder="Enter your password">
+                            
+                            
+                        
+                        <div class="form-options">
+                            <label class="remember-me">
+                                <input type="checkbox" id="remember">
+                                <span class="checkmark"></span>
+                                Remember me
+                            </label>
+                            <a href="#" class="forgot-password">Forgot password?</a>
+                        </div>
+                        
+                        <button type="submit" class="signin-btn">
+                            <span class="btn-text" onclick="window.location.href='signin.html'">Sign In</span>
+                            <div class="btn-loader" style="display: none;">
+                                <div class="spinner"></div>
+                            </div>
+                        </button>
+                        
+                        <div class="signin-footer">
+                            <p>Don't have an account? <a href="#" class="signup-link">Sign up here</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-left">
+                    <div class="footer-logo">
+                        <div class="logo-icon">👑</div>
+                        <span>MATRA of Queensland.</span>
+                    </div>
+                    <p class="acknowledgment">
+                        MATRA acknowledges the Traditional Custodians of Country throughout Australia. 
+                        We pay our respects to Aboriginal and Torres Strait Islander cultures and to Elders past, present and emerging.
+                    </p>
+                    <div class="bsb">BSB: 313 215</div>
+                </div>
+                <div class="footer-links">
+                    <div class="link-column">
+                        <h4>Company</h4>
+                        <a href="#">About us</a>
+                        <a href="#">Careers</a>
+                        <a href="#">Press</a>
+                        <a href="#">News</a>
+                        <a href="#">Contact</a>
+                    </div>
+                    <div class="link-column">
+                        <h4>Legal</h4>
+                        <a href="#">Terms</a>
+                        <a href="#">Privacy</a>
+                        <a href="#">Cookies</a>
+                        <a href="#">Licenses</a>
+                        <a href="#">Releases</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Copyright: © 2023 MATRA 2018-2023 | ABN 25 187 601 607 | AFSL/Australian Credit License Number 154431 All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="signin-script.js"></script>
+</body>
+</html>
