@@ -7,7 +7,7 @@
 
 body {
     font-family: 'Inter', sans-serif;
-    background: linear-gradient(180deg, #1a2e1a 0%, #0d0d0d 100%);
+    background: linear-gradient(135deg, #0d4f3c 0%, #1a2e1a 50%, #0d0d0d 100%);
     color: #ffffff;
     line-height: 1.6;
     min-height: 100vh;
@@ -22,14 +22,14 @@ body {
 
 /* Header Styles */
 .header {
-    background: rgba(0, 0, 0, 0.9);
+    background: rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(10px);
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 1000;
-    padding: 15px 0;
+    padding: 20px 0;
 }
 
 .header .container {
@@ -41,19 +41,28 @@ body {
 .logo {
     display: flex;
     align-items: center;
-    gap: 10px;
-    font-weight: 600;
-    font-size: 18px;
+    gap: 12px;
+    font-weight: 700;
+    font-size: 24px;
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
 .logo:hover {
     color: #00ff88;
+    transform: scale(1.05);
 }
 
 .logo-icon {
-    font-size: 24px;
+    font-size: 28px;
+    color: #f0b90b;
+}
+
+.logo-text {
+    background: linear-gradient(135deg, #ffffff 0%, #00ff88 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 /* Main Sign In Section */
@@ -63,7 +72,7 @@ body {
     align-items: center;
     justify-content: center;
     position: relative;
-    padding: 100px 0 50px;
+    padding: 120px 0 50px;
 }
 
 /* Floating Crypto Icons */
@@ -79,74 +88,68 @@ body {
 
 .crypto-icon {
     position: absolute;
-    width: 60px;
-    height: 60px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
+    width: 80px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 24px;
+    font-size: 32px;
     font-weight: bold;
-    animation: float 6s ease-in-out infinite;
+    animation: float 8s ease-in-out infinite;
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
 }
 
 .crypto-icon.bitcoin {
-    top: 15%;
-    left: 10%;
+    top: 10%;
+    left: 8%;
     color: #f7931a;
     animation-delay: 0s;
 }
 
+.crypto-icon.dogecoin {
+    top: 15%;
+    right: 12%;
+    color: #c2a633;
+    animation-delay: 1.5s;
+}
+
 .crypto-icon.xrp {
     top: 25%;
-    right: 15%;
-    color: #23292f;
-    animation-delay: 1s;
-}
-
-.crypto-icon.dogecoin {
-    top: 10%;
-    right: 25%;
-    color: #c2a633;
-    animation-delay: 2s;
-}
-
-.crypto-icon.polkadot {
-    bottom: 25%;
     right: 20%;
-    color: #e6007a;
+    color: #23292f;
     animation-delay: 3s;
 }
 
-.crypto-icon.binance {
-    bottom: 15%;
-    left: 15%;
-    color: #f3ba2f;
-    animation-delay: 4s;
-}
-
-.crypto-icon.ethereum {
-    top: 60%;
-    left: 5%;
-    color: #627eea;
-    animation-delay: 5s;
+.crypto-icon.polkadot {
+    bottom: 20%;
+    right: 15%;
+    color: #e6007a;
+    animation-delay: 4.5s;
 }
 
 .crypto-icon.litecoin {
-    top: 70%;
-    right: 10%;
+    bottom: 15%;
+    left: 12%;
     color: #bfbbbb;
     animation-delay: 6s;
 }
 
-.crypto-icon.cardano {
-    bottom: 40%;
-    left: 30%;
-    color: #0033ad;
-    animation-delay: 7s;
+.crypto-icon.menu {
+    top: 60%;
+    left: 5%;
+    color: #00ff88;
+    animation-delay: 2s;
+}
+
+.crypto-icon.dot {
+    top: 70%;
+    right: 8%;
+    color: #627eea;
+    animation-delay: 5s;
 }
 
 @keyframes float {
@@ -154,13 +157,13 @@ body {
         transform: translateY(0px) rotate(0deg); 
     }
     25% { 
-        transform: translateY(-15px) rotate(2deg); 
+        transform: translateY(-20px) rotate(3deg); 
     }
     50% { 
-        transform: translateY(-25px) rotate(0deg); 
+        transform: translateY(-30px) rotate(0deg); 
     }
     75% { 
-        transform: translateY(-15px) rotate(-2deg); 
+        transform: translateY(-20px) rotate(-3deg); 
     }
 }
 
@@ -174,12 +177,12 @@ body {
 }
 
 .signin-box {
-    background: rgba(26, 26, 26, 0.9);
+    background: rgba(26, 26, 26, 0.95);
     backdrop-filter: blur(20px);
-    border-radius: 20px;
-    padding: 40px;
+    border-radius: 24px;
+    padding: 50px 40px;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
     position: relative;
     overflow: hidden;
 }
@@ -190,10 +193,10 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, #00ff88, #00cc6a, #00ff88);
+    height: 3px;
+    background: linear-gradient(90deg, #00ff88, #f0b90b, #00ff88);
     background-size: 200% 100%;
-    animation: shimmer 3s ease-in-out infinite;
+    animation: shimmer 4s ease-in-out infinite;
 }
 
 @keyframes shimmer {
@@ -207,10 +210,14 @@ body {
 }
 
 .signin-header h1 {
-    font-size: 2.5rem;
+    font-size: 3rem;
     font-weight: 700;
-    margin-bottom: 10px;
-    background: linear-gradient(135deg, #ffffff 0%, #00ff88 100%);
+    margin-bottom: 15px;
+    line-height: 1.1;
+}
+
+.signin-header h1 .highlight {
+    background: linear-gradient(135deg, #00ff88 0%, #f0b90b 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -218,14 +225,15 @@ body {
 
 .signin-header p {
     color: #cccccc;
-    font-size: 16px;
+    font-size: 18px;
+    font-weight: 400;
 }
 
 /* Form Styles */
 .signin-form {
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 30px;
 }
 
 .form-group {
@@ -236,16 +244,16 @@ body {
     display: block;
     color: #ffffff;
     font-weight: 500;
-    margin-bottom: 8px;
-    font-size: 14px;
+    margin-bottom: 10px;
+    font-size: 15px;
 }
 
 .form-group input {
     width: 100%;
-    padding: 15px 50px 15px 15px;
+    padding: 18px 50px 18px 18px;
     background: rgba(13, 13, 13, 0.8);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 10px;
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
     color: #ffffff;
     font-size: 16px;
     transition: all 0.3s ease;
@@ -255,7 +263,7 @@ body {
 .form-group input:focus {
     outline: none;
     border-color: #00ff88;
-    box-shadow: 0 0 0 3px rgba(0, 255, 136, 0.1);
+    box-shadow: 0 0 0 4px rgba(0, 255, 136, 0.1);
     background: rgba(13, 13, 13, 0.9);
 }
 
@@ -265,7 +273,7 @@ body {
 
 .input-icon {
     position: absolute;
-    right: 15px;
+    right: 18px;
     top: 50%;
     transform: translateY(-50%);
     color: #888888;
@@ -275,7 +283,7 @@ body {
 
 .toggle-password {
     position: absolute;
-    right: 15px;
+    right: 18px;
     top: 50%;
     transform: translateY(-50%);
     background: none;
@@ -283,12 +291,14 @@ body {
     color: #888888;
     cursor: pointer;
     font-size: 18px;
-    padding: 5px;
+    padding: 8px;
     transition: color 0.3s ease;
+    border-radius: 4px;
 }
 
 .toggle-password:hover {
     color: #00ff88;
+    background: rgba(0, 255, 136, 0.1);
 }
 
 /* Form Options */
@@ -296,16 +306,21 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 10px 0;
+    margin: 15px 0;
 }
 
 .remember-me {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 15px;
     color: #cccccc;
+    transition: color 0.3s ease;
+}
+
+.remember-me:hover {
+    color: #00ff88;
 }
 
 .remember-me input[type="checkbox"] {
@@ -313,10 +328,10 @@ body {
 }
 
 .checkmark {
-    width: 18px;
-    height: 18px;
+    width: 20px;
+    height: 20px;
     border: 2px solid rgba(255, 255, 255, 0.3);
-    border-radius: 4px;
+    border-radius: 6px;
     position: relative;
     transition: all 0.3s ease;
 }
@@ -334,43 +349,44 @@ body {
     transform: translate(-50%, -50%);
     color: #000000;
     font-weight: bold;
-    font-size: 12px;
+    font-size: 14px;
 }
 
 .forgot-password {
     color: #00ff88;
     text-decoration: none;
-    font-size: 14px;
+    font-size: 15px;
+    font-weight: 500;
     transition: color 0.3s ease;
 }
 
 .forgot-password:hover {
-    color: #00cc6a;
+    color: #f0b90b;
 }
 
 /* Sign In Button */
 .signin-btn {
-    background: linear-gradient(135deg, #00ff88 0%, #00cc6a 100%);
+    background: linear-gradient(135deg, #00ff88 0%, #f0b90b 100%);
     color: #000000;
     border: none;
-    padding: 15px;
-    border-radius: 10px;
+    padding: 18px;
+    border-radius: 12px;
     font-weight: 600;
-    font-size: 16px;
+    font-size: 18px;
     cursor: pointer;
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
 .signin-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(0, 255, 136, 0.3);
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(0, 255, 136, 0.4);
 }
 
 .signin-btn:active {
-    transform: translateY(0);
+    transform: translateY(-1px);
 }
 
 .signin-btn:disabled {
@@ -387,10 +403,10 @@ body {
 }
 
 .spinner {
-    width: 20px;
-    height: 20px;
-    border: 2px solid rgba(0, 0, 0, 0.3);
-    border-top: 2px solid #000000;
+    width: 24px;
+    height: 24px;
+    border: 3px solid rgba(0, 0, 0, 0.3);
+    border-top: 3px solid #000000;
     border-radius: 50%;
     animation: spin 1s linear infinite;
 }
@@ -403,77 +419,59 @@ body {
 /* Sign In Footer */
 .signin-footer {
     text-align: center;
-    margin-top: 20px;
+    margin-top: 30px;
 }
 
 .signin-footer p {
     color: #888888;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 .signup-link {
     color: #00ff88;
     text-decoration: none;
-    font-weight: 500;
+    font-weight: 600;
     transition: color 0.3s ease;
 }
 
 .signup-link:hover {
-    color: #00cc6a;
+    color: #f0b90b;
 }
 
 /* Footer */
 .footer {
-    background: #0d0d0d;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
     padding: 40px 0 20px;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     margin-top: auto;
 }
 
 .footer-content {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    gap: 40px;
-    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
 .footer-logo {
     display: flex;
     align-items: center;
-    gap: 10px;
-    font-weight: 600;
-    font-size: 18px;
-    margin-bottom: 20px;
+    gap: 12px;
+    font-weight: 700;
+    font-size: 20px;
 }
 
 .acknowledgment {
+    text-align: right;
     color: #888888;
     font-size: 14px;
     line-height: 1.6;
-    margin-bottom: 20px;
 }
 
 .bsb {
-    color: #cccccc;
-    font-weight: 500;
-}
-
-.link-column h4 {
-    color: #ffffff;
-    font-weight: 600;
-    margin-bottom: 15px;
-}
-
-.link-column a {
-    display: block;
-    color: #888888;
-    text-decoration: none;
-    margin-bottom: 8px;
-    transition: color 0.3s ease;
-}
-
-.link-column a:hover {
     color: #00ff88;
+    font-weight: 600;
 }
 
 .footer-bottom {
@@ -484,7 +482,7 @@ body {
 
 .footer-bottom p {
     color: #888888;
-    font-size: 12px;
+    font-size: 14px;
 }
 
 /* Error and Success Messages */
@@ -492,43 +490,68 @@ body {
     background: rgba(255, 68, 68, 0.1);
     border: 1px solid rgba(255, 68, 68, 0.3);
     color: #ff4444;
-    padding: 12px;
-    border-radius: 8px;
-    font-size: 14px;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 15px;
     margin-bottom: 20px;
     display: none;
+    animation: slideIn 0.3s ease;
 }
 
 .success-message {
     background: rgba(0, 255, 136, 0.1);
     border: 1px solid rgba(0, 255, 136, 0.3);
     color: #00ff88;
-    padding: 12px;
-    border-radius: 8px;
-    font-size: 14px;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 15px;
     margin-bottom: 20px;
     display: none;
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-10px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Form Validation Styles */
+.form-group input.error {
+    border-color: #ff4444;
+    box-shadow: 0 0 0 4px rgba(255, 68, 68, 0.1);
+}
+
+.form-group input.success {
+    border-color: #00ff88;
+    box-shadow: 0 0 0 4px rgba(0, 255, 136, 0.1);
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
     .signin-box {
-        padding: 30px 25px;
+        padding: 40px 30px;
         margin: 20px;
     }
     
     .signin-header h1 {
-        font-size: 2rem;
+        font-size: 2.5rem;
     }
     
     .crypto-icon {
-        width: 50px;
-        height: 50px;
-        font-size: 20px;
+        width: 60px;
+        height: 60px;
+        font-size: 24px;
     }
     
     .footer-content {
-        grid-template-columns: 1fr;
+        flex-direction: column;
+        gap: 20px;
         text-align: center;
     }
     
@@ -545,24 +568,24 @@ body {
     }
     
     .signin-box {
-        padding: 25px 20px;
+        padding: 30px 25px;
     }
     
     .signin-header h1 {
-        font-size: 1.8rem;
+        font-size: 2rem;
     }
     
     .crypto-icon {
-        width: 40px;
-        height: 40px;
-        font-size: 16px;
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
     }
 }
 
 /* Loading Animation */
 .signin-main {
     opacity: 0;
-    animation: fadeIn 0.8s ease forwards;
+    animation: fadeIn 1s ease forwards;
 }
 
 @keyframes fadeIn {
@@ -577,17 +600,7 @@ body {
     background: rgba(0, 255, 136, 0.2);
     border-color: #00ff88;
     transition: all 0.3s ease;
-}
-
-/* Form Validation Styles */
-.form-group input.error {
-    border-color: #ff4444;
-    box-shadow: 0 0 0 3px rgba(255, 68, 68, 0.1);
-}
-
-.form-group input.success {
-    border-color: #00ff88;
-    box-shadow: 0 0 0 3px rgba(0, 255, 136, 0.1);
+    pointer-events: auto;
 }
 
 /* Ripple Effect */
@@ -611,3 +624,5 @@ body {
         opacity: 0;
     }
 }
+
+
