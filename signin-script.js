@@ -10,6 +10,17 @@ document.addEventListener('DOMContentLoaded', function() {
     initLoadingAnimation();
 });
 
+// Resolve base path for GitHub Pages or local
+function getBasePath() {
+    try {
+        const parts = window.location.pathname.split('/').filter(Boolean);
+        if (window.location.hostname.endsWith('github.io')) {
+            return parts.length ? `/${parts[0]}` : '';
+        }
+        return '';
+    } catch (e) { return ''; }
+}
+
 // Sign In Form Handler
 function initSignInForm() {
     const signinForm = document.getElementById('signinForm');
@@ -17,17 +28,34 @@ function initSignInForm() {
     const btnText = document.querySelector('.btn-text');
     const btnLoader = document.querySelector('.btn-loader');
     
-    // Valid credentials
+    console.log('Form elements found:', {
+        signinForm: !!signinForm,
+        signinBtn: !!signinBtn,
+        btnText: !!btnText,
+        btnLoader: !!btnLoader,
+        emailInput: !!document.getElementById('email'),
+        passwordInput: !!document.getElementById('password')
+    });
+    
+    if (!signinForm) {
+        console.error('Sign-in form not found! Make sure the form has id="signinForm"');
+        return;
+    }
+    
+    // Valid credentials - fixed for demo
     const validCredentials = {
-        username: 'jamieshawld@gmail.com',
-        password: 'AltCtrl22'
+        username: 'getin@gmail.com',
+        password: 'moneymaker'
     };
     
     signinForm.addEventListener('submit', function(e) {
         e.preventDefault();
         
-        const username = document.getElementById('username').value.trim();
+        const username = document.getElementById('email').value.trim();
         const password = document.getElementById('password').value;
+        
+        console.log('Form submitted with:', { username, password });
+        console.log('Expected credentials:', validCredentials);
         
         // Show loading state
         showLoadingState();
@@ -37,9 +65,9 @@ function initSignInForm() {
             if (username === validCredentials.username && password === validCredentials.password) {
                 showSuccessMessage('Login successful! Redirecting...');
                 
-                // Redirect to dashboard or main page after success
+                // Redirect to dashboard with credentials as URL parameters (no localStorage)
                 setTimeout(() => {
-                    window.location.href = 'index.html';
+                    window.location.href = 'dashboard.html?email=' + encodeURIComponent(username) + '&password=' + encodeURIComponent(password);
                 }, 2000);
             } else {
                 showErrorMessage('Invalid username or password. Please try again.');
@@ -63,7 +91,7 @@ function initSignInForm() {
 
 // Form Validation
 function initFormValidation() {
-    const usernameInput = document.getElementById('username');
+    const usernameInput = document.getElementById('email');
     const passwordInput = document.getElementById('password');
     
     // Real-time validation
@@ -277,7 +305,7 @@ document.addEventListener('keydown', function(e) {
 
 // Clear Form Function
 function clearForm() {
-    document.getElementById('username').value = '';
+    document.getElementById('email').value = '';
     document.getElementById('password').value = '';
     document.getElementById('remember').checked = false;
     
@@ -291,11 +319,11 @@ function clearForm() {
 
 // Auto-fill for demo purposes (remove in production)
 function autoFillDemo() {
-    document.getElementById('username').value = 'jamieshawld@gmail.com';
-    document.getElementById('password').value = 'AltCtrl22';
+    document.getElementById('email').value = 'getin@gmail.com';
+    document.getElementById('password').value = 'moneymaker';
     
     // Trigger validation
-    document.getElementById('username').dispatchEvent(new Event('input'));
+    document.getElementById('email').dispatchEvent(new Event('input'));
     document.getElementById('password').dispatchEvent(new Event('input'));
 }
 
@@ -346,41 +374,6 @@ window.addEventListener('scroll', function() {
     });
 });
 
-// Form Auto-save (localStorage)
-function initAutoSave() {
-    const usernameInput = document.getElementById('username');
-    const rememberCheckbox = document.getElementById('remember');
-    
-    // Load saved data
-    const savedUsername = localStorage.getItem('savedUsername');
-    const rememberMe = localStorage.getItem('rememberMe') === 'true';
-    
-    if (savedUsername && rememberMe) {
-        usernameInput.value = savedUsername;
-        rememberCheckbox.checked = true;
-    }
-    
-    // Save on change
-    usernameInput.addEventListener('input', function() {
-        if (rememberCheckbox.checked) {
-            localStorage.setItem('savedUsername', this.value);
-        }
-    });
-    
-    rememberCheckbox.addEventListener('change', function() {
-        if (this.checked) {
-            localStorage.setItem('savedUsername', usernameInput.value);
-            localStorage.setItem('rememberMe', 'true');
-        } else {
-            localStorage.removeItem('savedUsername');
-            localStorage.removeItem('rememberMe');
-        }
-    });
-}
-
-// Initialize auto-save
-initAutoSave();
-
 // Add smooth transitions to all interactive elements
 document.addEventListener('DOMContentLoaded', function() {
     const interactiveElements = document.querySelectorAll('input, button, a, .crypto-icon');
@@ -392,5 +385,5 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Console welcome message
 console.log('🔐 Sign In page loaded successfully!');
-console.log('📧 Demo credentials: jamieshawld@gmail.com / AltCtrl22');
+console.log('📧 Demo credentials: getin@gmail.com / moneymaker');
 console.log('💡 Use the "Auto-fill Demo" button for quick testing');
